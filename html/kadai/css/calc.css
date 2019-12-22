@@ -1,0 +1,64 @@
+.title_label {
+    font-family: sans-serif;
+    border-color: brown;
+    border:2px;
+    text-align: center;
+}
+
+table {
+    border:double;
+    border-radius: 8%;
+    background-color: #222222;
+}
+
+tr {
+   margin:10px;
+   align-content: center;
+}
+
+td {
+    border: 
+    margin: 10px;
+    align-content: center;
+}
+
+.btn {
+    border-radius: 15%;
+    margin:2px 2px 5px 5px;
+    border-width: medium;
+    border-radius: 15%;
+    width:50px;
+    height:40px;  
+}
+
+.btn_op {
+    border-radius: 15%;
+    margin:2px 2px 5px 5px;
+    border-width: medium;
+    border-radius: 15%;
+    width:50px;
+    height:40px;
+    background-color: #666666;
+    color:white;
+}
+
+.btn_ac {
+    border-radius: 15%;
+    margin:2px 2px 5px 5px;
+    border-width: medium;
+    border-radius: 15%;
+    width:50px;
+    height:40px;
+    background-color: red;
+    color:white;
+}
+
+.view_num {
+    text-align: right;
+    padding-right: 10px;
+    font-size: 30px;
+    width:240px;
+    margin: 3px 3px 5px 5px ;
+    background-color: #692104;
+    color:#CCCCCC;
+}

@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto; /*左右の余白をauto 水平中央揃え*/
     box-shadow: 0 0 10px rgba(0,0,0,.3);
 }
@@ -96,10 +96,28 @@ footer{
     font-size: 80%;
 }
 
+.description img:hover{ /*マウスが画像の上にある時*/
+    opacity: .5;/*透明度50%*/
+}
+
+.description img{
+    float: left;
+    display: block;/*表示をブロック状態にする*/
+    margin: 0 auto;/*画像を中央に揃える*/
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
 @media only screen and (max-width:600px){
     .description img{
-        float: none;
+        float: left;
         display: block;/*表示をブロック状態にする*/
         margin: 0 auto;/*画像を中央に揃える*/
+        transition-property: opacity;
+        transition-duration: 1s;
+        transition-timing-function: ease;
+        transition-delay: 0s;
     }
 }
