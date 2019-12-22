@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="UTF-8">
+        <title>電卓</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/calc.css">
+    </head>
+    <body>
+        <script type="text/javascript">
+            var formula = ""; //式
+            var is_float=false; //view_valが小数かどうか
+            var operator = ""; //演算子
+            var view_val = "0";
+            var prev_input = 0; //0:なし 1:数字 2:演算子 3:小数点 4:=
+            
+            function inputVal(x) {
+                if (prev_input==4){
+                    formula=""; //直前の入力が=のときは、次の計算とみなす
+                    view_val = x;
+                }else if (view_val == "0"){
+                    view_val = x;
+                }else{
+                    view_val += x;
+                }
+                document.calculator.view_num.value=view_val;
+                console.log("view_val:",view_val);
+                prev_input = 1;
+            }
+            function set_operator(op) {
+                console.log(parseInt(view_val));
+                if (operator=='/' & parseInt(view_val)==0) {
+                    console.log("Zero division");
+                }else{
+                    if (view_val.charAt(-1) == ".") {
+                        view_val += 0; //末尾が小数点だった時に0を付加する（例：'1.'→'1.0'）
+                    }
+                    if (prev_input!=2) {
+                        formula += operator + view_val;
+                        console.log("formula:",formula);
+                        formula = eval(formula).toString();
+                    }
+                    console.log("formula:",formula);
+
+                    view_val="0";  // 表示する値を再セット
+                    operator = op; // 演算子を再セットする
+                    is_float=false;
+                    document.calculator.view_num.value=view_val;
+                }
+                prev_input=2;
+            }
+            function float_dot() {
+                if (is_float==false) {
+                    view_val += '.';
+                    is_float = true;
+                }else{
+                    console.log("小数点が複数回入力されました");
+                }
+                document.calculator.view_num.value=view_val;
+                prev_input=3;
+            }
+            function answer() {
+                if (operator=='/' & parseInt(view_val)==0) {
+                    console.log("Zero division");
+                }else{
+                    if (view_val.charAt(-1) == ".") {
+                        view_val += 0; //末尾が小数点だった時に0を付加する（例：'1.'→'1.0'）
+                    }
+                    if (prev_input!=2 ) {
+                        formula += operator + view_val;
+                        console.log("formula:",formula);
+                        formula = eval(formula).toString();
+                    }
+                    console.log("formula:",formula);
+
+                    view_val=formula;  // 表示する値を再セット
+                    operator = ""; // 演算子を再セットする
+                    is_float=false;
+                    document.calculator.view_num.value=view_val;
+                    console.log(formula);
+                }
+                prev_input = 4;
+            }
+            function clear() {
+                view_val = "0";
+                is_float = false;
+                document.calculator.view_num.value=view_val;
+            }
+            function allClear() {
+                view_val="0";
+                is_float=false;
+                formula = ""; 
+                operator = "";
+                view_val = "0";
+                prev_input = 0;
+                document.calculator.view_num.value=view_val;
+            }
+            function plus_minus(){
+                if (view_val.charAt(0)=="-") {
+                    view_val = view_val.substr(1);
+                }else{
+                    view_val="-" + view_val;
+                }
+                document.calculator.view_num.value=view_val;
+            }
+            function precent(){
+                console.log("未実装");
+            }
+        </script>
+        
+        <form name="calculator">
+            <table>
+                <tr>
+                    <td colspan=4><div class="title_label">電 卓</div></td>
+                </tr>
+                <tr>
+                    <td colspan=4><input type="text" name="view_num" class="view_num" value="0"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn_op" value=" + " onclick="set_operator('+')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" - " onclick="set_operator('-')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" × " onclick="set_operator('*')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" ÷ " onclick="set_operator('/')"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 7 " onclick="inputVal('7')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 8 " onclick="inputVal('8')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 9 " onclick="inputVal('9')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" = " onclick="answer()"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 4 " onclick="inputVal('4')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 5 " onclick="inputVal('5')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 6 " onclick="inputVal('6')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" % " onclick="percent()"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 1 " onclick="inputVal('1')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 2 " onclick="inputVal('2')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 3 " onclick="inputVal('3')"></td>
+                    <td colspan=1><input type="button" class="btn_op" value=" ± " onclick="plus_minus()"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 0 " onclick="inputVal('0')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" . " onclick="float_dot()"></td>
+                    <td colspan=1><input type="button" class="btn" value=" C " onclick="clear()"></td>
+                    <td colspan=1><input type="button" class="btn_ac" value=" AC " onclick="allClear()"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

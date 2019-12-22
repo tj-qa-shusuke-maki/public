@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="UTF-8">
+        <title>電卓</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/calc.css">
+    </head>
+    <body>
+        <script type="text/javascript">
+            var val1 = "";
+            var val2 = "";
+            var formula = ""; //式
+            var is_float=false; //view_valが小数かどうか
+            var mode = 0; // 0:計算終了 1:計算中
+            var operator = ""; //演算子
+            var view_val="0";
+            
+            function inputVal(x) {
+                console.log(x)
+                if (view_val !== "0"){
+                    view_val += x;
+                }else{
+                    view_val = x;
+                }
+                document.calculator.view_num.value=view_val;
+                //console.log(view_val.substr(-1))
+            }
+            function set_operator(op) {
+                if (operator==""){
+                    operator=op;
+                }else{
+                    //演算子を修正する場合
+                    operator=op;
+                }
+                val1 = view_val;
+                view_val = "";
+            }
+
+            function float_dot() {
+                if (view_val.substr(-1)!='.' & is_float==false) {
+                    view_val += '.';
+                    is_float = true;
+                }
+                document.calculator.view_num.value=view_val;
+            }
+
+            function plus_minus(){
+                if (view_val.charAt(0)=="-") {
+                    view_val = view_val.substr(1);
+                }else{
+                    view_val="-" + view_val;
+                }
+                document.calculator.view_num.value=view_val;
+            }
+
+            function answer() {
+                val2 = view_val;
+                var ans = eval(val1+operator+"("+val2+")");
+                document.calculator.view_num.value=ans;
+                val1=toString(ans);
+                val2="0";
+                operator="";
+            }
+            function clear() {
+                view_val="0";
+                val2="0";
+                is_float=false;
+                document.calculator.view_num.value="0";
+            }
+            function allClear() {
+                view_val="0";
+                ans=0;
+                val1="0";
+                val2="0";
+                is_float=false;
+                document.calculator.view_num.value="0";
+            }
+        </script>
+       <!--
+        myTotal = 0;	// 現在の合計値
+        myInput = "";	// 現在入力している値
+        myCalc = "+";	// 合計と入力値の演算子
+        myFlg = 1;	// １回前に入力したもの 0:数字 1:演算子
+ 	
+        function myValue(myData){	// 0～9または小数点ボタンを押した
+            myFlg = 0;	// １回前に入力したものは数値
+            myInput += myData;	// 現在入力している値に追加
+            document.myForm.myLine.value = myInput;	// 現在入力している値表示
+        }	
+ 	
+        function myCalculate(myData){	// 演算ボタンを押した
+            if (myFlg==0){	// １回前に入力したものは数値か？
+                myFlg = 1;	// １回前に入力したものは演算子
+                myWork = myTotal + myCalc + myInput;	// 一連の計算式を作る
+                myTotal = eval(myWork);	// 計算式を計算させる
+                myInput = "";	// 現在入力している値をクリア
+                document.myForm.myLine.value = myTotal;	// 合計を表示
+            }	
+            if (myData == "="){	// 演算ボタンは[＝]か？
+                myTotal = 0;	// 合計をクリア
+                myCalc = "+";	// 演算子を[+]とする
+            }else{	// 演算ボタンは[＝]以外である
+                myCalc = myData;	// 演算子を退避させておく
+            }	
+        }	
+ 	
+        function myC(){	// クリアボタン[C]を押した
+            myTotal = 0;	// 合計クリア
+            myCalc = "+";	// 演算子クリア
+            myInput = "";	// 現在入力している値をクリア
+            document.myForm.myLine.value = myTotal;	// つまり、０を表示
+        }
+        -->
+        
+        <form name="calculator">
+            <table>
+                <tr>
+                    <td colspan=4><div class="title_label">電 卓</div></td>
+                </tr>
+                <tr>
+                    <td colspan=4><input type="text" name="view_num" class="view_num" value="0"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" + " onclick="set_operator('+')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" - " onclick="set_operator('-')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" × " onclick="set_operator('*')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" ÷ " onclick="set_operator('/')"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 7 " onclick="inputVal('7')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 8 " onclick="inputVal('8')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 9 " onclick="inputVal('9')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" = " onclick="answer()"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 4 " onclick="inputVal('4')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 5 " onclick="inputVal('5')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 6 " onclick="inputVal('6')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" % " onclick="inputVal('%')"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 1 " onclick="inputVal('1')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 2 " onclick="inputVal('2')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" 3 " onclick="inputVal('3')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" ± " onclick="plus_minus()"></td>
+                </tr>
+                <tr>
+                    <td colspan=1><input type="button" class="btn" value=" 0 " onclick="inputVal('0')"></td>
+                    <td colspan=1><input type="button" class="btn" value=" . " onclick="float_dot()"></td>
+                    <td colspan=1><input type="button" class="btn" value=" C " onclick="clear()"></td>
+                    <td colspan=1><input type="button" class="btn" value=" AC " onclick="allClear()"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

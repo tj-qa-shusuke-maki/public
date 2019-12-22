@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>My Photos</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>My Photos</h1>
+  </header>
+  <div class="container">
+    <div id="img_unit">
+      <div class="photo" v-for="Photo in Photos">
+        <img :src="Photo.path">
+        <div class="inner">
+          <p>{{Photo.caption}}<span>{{Photo.name}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    // var ajax = new XMLHttpRequest();
+    // ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+    // ajax.responseType ='json';
+    // ajax.send(null);
+
+
+    // var img;
+    // var caption;
+    // var div;
+
+    // ajax.onreadystatechange = function() {
+
+    //   if (ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
+
+    //     for (var i = 0; i < images.length; i++) {
+    //       var data = this.response[i];
+
+    //       img = document.createElement('img');
+    //       img.setAttribute('src', data.path);
+
+    //       caption = document.createElement('div');
+    //       caption.className = 'inner';
+    //       caption.innerHTML = '<p>' + data.caption + '<span>' + data.name + '</span></p><';
+
+    //       div = document.createElement('div');
+    //       div.className = 'photo';
+    //       div.appendChild(img);
+    //       div.appendChild(caption);
+
+    //       document.getElementById('img_unit').appendChild(div);
+
+    //     }
+    //   }
+    // };
+
+
+    // $('#img_unit').html('ここに画像リストが表示されます').css('margin-top', '100px');
+
+    // $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
+    //   data.forEach(element => {
+    //     $('<div class="photo"></div>')
+    //       .append('<img src="' + element.path + '">')
+    //       .append('<div class="inner"><p>' + element.caption + '<span>' + element.name + '</span></p></div>')
+    //       .appendTo('#img_unit');
+    //   });
+    // })
+
+    var app = new Vue({
+      el: '#img_unit',
+      data: {
+        Photos: []
+      },
+      created: function () {
+        var self = this;
+        $.getJSON('https://h2o-space.com/htmlbook/images.php', function (data) {
+          self.Photos = data;
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
