@@ -28,7 +28,9 @@
                 prev_input = 1;
             }
             function set_operator(op) {
-                console.log(parseInt(view_val));
+                if(prev_input == 4){
+                    formula = "";
+                }
                 if (operator=='/' & parseInt(view_val)==0) {
                     console.log("Zero division");
                 }else{
@@ -81,9 +83,10 @@
                 }
                 prev_input = 4;
             }
-            function clear() {
+            function current_clear() {
                 view_val = "0";
                 is_float = false;
+                console.log(view_val);
                 document.calculator.view_num.value=view_val;
             }
             function allClear() {
@@ -132,7 +135,7 @@
                     <td colspan=1><input type="button" class="btn" value=" 4 " onclick="inputVal('4')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 5 " onclick="inputVal('5')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 6 " onclick="inputVal('6')"></td>
-                    <td colspan=1><input type="button" class="btn_op" value=" % " onclick="percent()"></td>
+                    <td colspan=1><input type="button" class="btn_op" value="mod" onclick="set_operator('%')"></td>
                 </tr>
                 <tr>
                     <td colspan=1><input type="button" class="btn" value=" 1 " onclick="inputVal('1')"></td>
@@ -143,7 +146,7 @@
                 <tr>
                     <td colspan=1><input type="button" class="btn" value=" 0 " onclick="inputVal('0')"></td>
                     <td colspan=1><input type="button" class="btn" value=" . " onclick="float_dot()"></td>
-                    <td colspan=1><input type="button" class="btn" value=" C " onclick="clear()"></td>
+                    <td colspan=1><input type="button" class="btn" value=" C " onclick="current_clear()"></td>
                     <td colspan=1><input type="button" class="btn_ac" value=" AC " onclick="allClear()"></td>
                 </tr>
             </table>
