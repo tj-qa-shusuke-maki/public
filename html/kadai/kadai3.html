@@ -45,10 +45,10 @@
                     console.log("formula:",formula);
 
                     view_val="0";  // 表示する値を再セット
-                    operator = op; // 演算子を再セットする
-                    is_float=false;
                     document.calculator.view_num.value=view_val;
                 }
+                operator = op; // 演算子を再セットする
+                is_float=false;
                 prev_input=2;
             }
             function float_dot() {
@@ -129,19 +129,19 @@
                     <td colspan=1><input type="button" class="btn" value=" 7 " onclick="inputVal('7')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 8 " onclick="inputVal('8')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 9 " onclick="inputVal('9')"></td>
-                    <td colspan=1><input type="button" class="btn_op" value=" = " onclick="answer()"></td>
+                    <td colspan=1><input type="button" class="btn_op2" value=" = " onclick="answer()"></td>
                 </tr>
                 <tr>
                     <td colspan=1><input type="button" class="btn" value=" 4 " onclick="inputVal('4')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 5 " onclick="inputVal('5')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 6 " onclick="inputVal('6')"></td>
-                    <td colspan=1><input type="button" class="btn_op" value="mod" onclick="set_operator('%')"></td>
+                    <td colspan=1><input type="button" class="btn_op2" value="mod" onclick="set_operator('%')"></td>
                 </tr>
                 <tr>
                     <td colspan=1><input type="button" class="btn" value=" 1 " onclick="inputVal('1')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 2 " onclick="inputVal('2')"></td>
                     <td colspan=1><input type="button" class="btn" value=" 3 " onclick="inputVal('3')"></td>
-                    <td colspan=1><input type="button" class="btn_op" value=" ± " onclick="plus_minus()"></td>
+                    <td colspan=1><input type="button" class="btn_op2" value=" ± " onclick="plus_minus()"></td>
                 </tr>
                 <tr>
                     <td colspan=1><input type="button" class="btn" value=" 0 " onclick="inputVal('0')"></td>

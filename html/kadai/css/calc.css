@@ -17,7 +17,7 @@ tr {
 }
 
 td {
-    border: 
+    border: 3px;
     margin: 10px;
     align-content: center;
 }
@@ -39,6 +39,17 @@ td {
     width:50px;
     height:40px;
     background-color: #666666;
+    color:white;
+}
+
+.btn_op2 {
+    border-radius: 15%;
+    margin:2px 2px 5px 5px;
+    border-width: medium;
+    border-radius: 15%;
+    width:50px;
+    height:40px;
+    background-color: #0c36f3;
     color:white;
 }
 
