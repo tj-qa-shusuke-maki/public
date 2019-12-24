@@ -29,6 +29,8 @@ td {
     border-radius: 15%;
     width:50px;
     height:40px;  
+    font-size: 1.4em;
+    font-weight: bold;
 }
 
 .btn_op {
@@ -40,6 +42,21 @@ td {
     height:40px;
     background-color: #666666;
     color:white;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.btn_mod {
+    border-radius: 15%;
+    margin:2px 2px 5px 5px;
+    border-width: medium;
+    border-radius: 15%;
+    width:50px;
+    height:40px;
+    background-color: #666666;
+    color:white;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
 .btn_op2 {
@@ -51,6 +68,8 @@ td {
     height:40px;
     background-color: #0c36f3;
     color:white;
+    font-size: 1.4em;
+    font-weight: bold;
 }
 
 .btn_ac {
@@ -62,6 +81,8 @@ td {
     height:40px;
     background-color: red;
     color:white;
+    font-size: 1.4em;
+    font-weight: bold;
 }
 
 .view_num {
